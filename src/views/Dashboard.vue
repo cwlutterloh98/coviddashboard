@@ -1,6 +1,7 @@
 <template>
   <v-container fluid>
     <app-section>
+      <h1>Covid 19 cases in Ohio</h1>
       <v-row>
         <v-col
           cols="12"
@@ -9,12 +10,14 @@
           v-for="stat in summary"
           :key="stat.title"
         >
+          <!-- the four cases modules -->
           <v-skeleton-loader
             class="elevation-4"
             ref="skeleton"
             type="list-item-avatar-two-line"
             v-if="loadingSkeleton"
           />
+
           <app-stat-card
             :title="stat.title"
             :color="stat.color"
@@ -25,18 +28,11 @@
         </v-col>
       </v-row>
     </app-section>
+
+    <!-- the Ohio Counties Statistics Table -->
     <app-section>
       <app-data-table
-        title="Global Statistics"
-        :headers="headers"
-        :items="countriesList"
-        :loading="loadingCountries"
-        @searchFilter="searchFilter($event)"
-      />
-    </app-section>
-    <app-section>
-      <app-data-table
-        title="United States Statistics"
+        title="Ohio Counties Statistics"
         :headers="statesHeaders"
         :items="statesList"
         :loading="loadingStates"
@@ -47,6 +43,7 @@
 </template>
 
 <script>
+// scripts for how to handle the covid stats table and the cards
 import AppSection from "../components/AppSection.vue";
 import AppDataTable from "../components/AppDataTable.vue";
 import AppStatCard from "../components/AppStatCard.vue";
@@ -60,59 +57,40 @@ export default {
     AppStatCard
   },
   created() {
+    // covid case cards
     this.getSummary();
-    this.getAllCountriesData();
+    // ohio counties stats
     this.getUnitedStatesData();
   },
   computed: {
-    countriesList() {
-      if (this.searchValue === "") {
-        return this.allCountriesData;
-      } else {
-        return this.allCountriesData.filter(c =>
-          c.country.includes(this.searchValue)
-        );
-      }
-    },
+    // filter the data for the Ohio Counties statistics
     statesList() {
+      var allUnitedStatesData = this.allUnitedStatesData.filter(c =>
+        c.province.includes("Ohio")
+      );
+      // if you type into the search bar for counties bring up the correct counties
       if (this.stateSearchValue === "") {
-        return this.allUnitedStatesData;
+        return allUnitedStatesData;
       } else {
-        return this.allUnitedStatesData.filter(c =>
-          c.state.includes(this.stateSearchValue)
+        // have to make everything lowercase for search to work correctly
+        return allUnitedStatesData.filter(c =>
+          c.county.toLowerCase().includes(this.stateSearchValue.toLowerCase())
         );
       }
     }
   },
+  // data for the ohio counties statistics
   data: () => {
     return {
-      headers: [
-        { text: "Flag", value: "countryInfo.flag" },
-        { text: "Country", value: "country" },
-        { text: "Cases", value: "cases" },
-        { text: "Today cases", value: "todayCases" },
-        { text: "Deaths", value: "deaths" },
-        { text: "Today deaths", value: "todayDeaths" },
-        { text: "Recoverd", value: "recovered" },
-        { text: "Active", value: "active" },
-        { text: "Critical", value: "critical" },
-        { text: "Cases per 1M", value: "casesPerOneMillion" },
-        { text: "Deaths per 1M", value: "deathsPerOneMillion" }
-      ],
       statesHeaders: [
-        { text: "State", value: "state" },
-        { text: "Cases", value: "cases" },
-        { text: "Today cases", value: "todayCases" },
-        { text: "Deaths", value: "deaths" },
-        { text: "Today deaths", value: "todayDeaths" },
-        { text: "Active", value: "active" },
-        { text: "Tests", value: "tests" },
-        { text: "Tests per 1M", value: "testsPerOneMillion" }
+        { text: "County", value: "county" },
+        { text: "Today cases", value: "stats.confirmed" },
+        { text: "Deaths", value: "stats.deaths" }
       ],
       loadingSkeleton: true,
       loadingStates: false,
       loadingCountries: false,
-      allCountriesData: [],
+      //allCountriesData: [],
       allUnitedStatesData: [],
       searchValue: "",
       stateSearchValue: "",
@@ -120,6 +98,7 @@ export default {
     };
   },
   methods: {
+    // get the covid 19 cards
     getSummary() {
       this.loadingSkeleton = true;
       statisticsService.getSummary().then(res => {
@@ -152,6 +131,7 @@ export default {
         this.loadingSkeleton = false;
       });
     },
+    /*
     getAllCountriesData() {
       this.loadingCountries = true;
       statisticsService
@@ -162,6 +142,8 @@ export default {
         })
         .catch(() => (this.loadingCountries = false));
     },
+    */
+    // get the Ohio counties statistics
     getUnitedStatesData() {
       this.loadingStates = true;
       statisticsService

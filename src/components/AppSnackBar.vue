@@ -8,6 +8,7 @@
 </template>
 
 <script>
+// send error messages when things are broken
 export default {
   computed: {
     message() {

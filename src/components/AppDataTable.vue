@@ -1,6 +1,7 @@
 <template>
   <div>
     <div class="title py-3">{{ title }}</div>
+    <!-- display the data table -->
     <v-data-table
       :headers="headers"
       :items="items"
@@ -15,6 +16,7 @@
         nextIcon: 'mdi-arrow-right'
       }"
     >
+      <!-- search filter -->
       <template v-slot:top>
         <v-row>
           <v-col cols="12" sm="6" md="4" lg="3">
@@ -28,47 +30,13 @@
         </v-row>
       </template>
 
-      <template v-slot:item.countryInfo.flag="{ item }">
-        <v-img
-          :src="`${item.countryInfo.flag}`"
-          height="20px"
-          width="30px"
-        ></v-img>
+      <!-- templates for death and cases to display in buttons -->
+      <template v-slot:item.stats.deaths="{ item }">
+        <v-chip color="red" dark>+{{ item.stats.deaths | comma }}</v-chip>
       </template>
-
-      <template v-slot:item.cases="{ item }"
-        >{{ item.cases | comma }}
-      </template>
-      <template v-slot:item.deaths="{ item }"
-        >{{ item.deaths | comma }}
-      </template>
-      <template v-slot:item.recovered="{ item }"
-        >{{ item.recovered | comma }}
-      </template>
-      <template v-slot:item.active="{ item }"
-        >{{ item.active | comma }}
-      </template>
-      <template v-slot:item.critical="{ item }"
-        >{{ item.critical | comma }}
-      </template>
-      <template v-slot:item.casesPerOneMillion="{ item }"
-        >{{ item.casesPerOneMillion | comma }}
-      </template>
-      <template v-slot:item.deathPerOneMillion="{ item }"
-        >{{ item.deathPerOneMillion | comma }}
-      </template>
-      <template v-slot:item.tests="{ item }"
-        >{{ item.tests | comma }}
-      </template>
-      <template v-slot:item.testsPerOneMillion="{ item }"
-        >{{ item.testsPerOneMillion | comma }}
-      </template>
-      <template v-slot:item.todayDeaths="{ item }">
-        <v-chip color="red" dark>+{{ item.todayDeaths | comma }}</v-chip>
-      </template>
-      <template v-slot:item.todayCases="{ item }">
+      <template v-slot:item.stats.confirmed="{ item }">
         <v-chip color="yellow darken-4" dark
-          >+{{ item.todayCases | comma }}</v-chip
+          >+{{ item.stats.confirmed | comma }}</v-chip
         >
       </template>
     </v-data-table>
@@ -77,6 +45,7 @@
 
 <script>
 export default {
+  // properties for the data table to work
   props: {
     title: {
       type: String,
@@ -100,6 +69,7 @@ export default {
       search: ""
     };
   },
+  // the search function omits from the results
   methods: {
     filter(searchValue) {
       this.$emit("searchFilter", searchValue);

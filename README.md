@@ -1,8 +1,6 @@
 # covid-19-dashboard
 
-Dashboard built with vuejs and vuetify to show the latest statistics of the novel corona virus Covid19.
-
-You can see it live [Here](https://covid19.nasouf.ly)
+Dashboard built with vuejs and vuetify to show the latest statistics on Ohio Covid 19
 
 ## Getting started
 

@@ -4,6 +4,7 @@ import Layout from "../views/Layout.vue";
 
 Vue.use(VueRouter);
 
+// set up navigation and routes
 const routes = [
   {
     path: "/",
@@ -22,12 +23,6 @@ const routes = [
         name: "Charts",
         component: () =>
           import(/* webpackChunkName: "charts" */ "../views/Charts.vue")
-      },
-      {
-        path: "about",
-        name: "About",
-        component: () =>
-          import(/* webpackChunkName: "about" */ "../views/About.vue")
       }
     ]
   },

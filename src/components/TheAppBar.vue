@@ -9,17 +9,9 @@
         :key="item.path"
         >{{ item.path }}</v-btn
       >
-    </app-section>
-    <v-btn
-      text
-      color="white"
-      target="_blank"
-      href="https://github.com/ANasouf/covid19-dashborad"
-      >Github<v-icon>mdi-open-in-new</v-icon></v-btn
-    >
+    </app-section>   
   </v-app-bar>
 </template>
-
 <script>
 import AppSection from "../components/AppSection.vue";
 export default {
