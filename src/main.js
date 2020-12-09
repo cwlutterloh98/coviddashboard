@@ -8,9 +8,11 @@ import "./utils/filters";
 
 Vue.config.productionTip = false;
 
+// setup app
 new Vue({
   vuetify,
   router,
   store,
   render: h => h(App)
 }).$mount("#app");
+

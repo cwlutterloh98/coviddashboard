@@ -1,3 +1,4 @@
+<!-- the template to display when things are broken at bottom of screen-->
 <template>
   <v-snackbar v-model="show" :color="color" :timeout="timeout">
     {{ message }}

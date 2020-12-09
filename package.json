@@ -1,5 +1,8 @@
 {
   "name": "covid-19-dashboard",
+  "author": "Chas Lutterloh",
+  "description": "A Covid-19 dashboard showing cases for Ohio and Ohio counties",
+  "license": "ISC",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -15,6 +18,7 @@
     "helmet": "^4.2.0",
     "vue": "^2.6.11",
     "vue-chartjs": "^3.5.1",
+    "vue-cookies": "^1.7.4",
     "vue-d3-charts": "^0.2.8",
     "vue-router": "^3.1.6",
     "vuetify": "^2.2.21",

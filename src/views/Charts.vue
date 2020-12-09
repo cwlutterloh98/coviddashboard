@@ -15,6 +15,7 @@
             :options="chartOptions"
             :chartColors="positiveChartColors"
             label="Positive"
+            yAxisID="Number of Cases"
           />
         </div>
       </div>
@@ -28,6 +29,7 @@
             :options="chartOptions"
             :chartColors="deathColors"
             label="Deaths"
+            yAxisID="Number of Deaths"
           />
         </div>
       </div>
@@ -56,13 +58,6 @@ export default {
         pointBackgroundColor: "#FFFFFF",
         backgroundColor: "#007bff"
       },
-      arrRecovered: [],
-      recoveredColors: {
-        borderColor: "#4E5E66",
-        pointBorderColor: "#4E5E66",
-        pointBackgroundColor: "#FFFFFF",
-        backgroundColor: "#28a745"
-      },
       arrDeaths: [],
       deathColors: {
         borderColor: "#E06D06",
@@ -81,6 +76,9 @@ export default {
               },
               gridLines: {
                 display: true
+              },
+              scaleLabel: {
+                display: true
               }
             }
           ],
@@ -92,12 +90,16 @@ export default {
               },
               gridLines: {
                 display: false
+              },
+              scaleLabel: {
+                display: true,
+                labelString: 'Day'
               }
             }
           ]
         },
         legend: {
-          display: false
+          display: true
         },
         responsive: true,
         maintainAspectRatio: false

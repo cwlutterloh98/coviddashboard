@@ -1,3 +1,4 @@
+<!-- template for not found -->
 <template>
   <v-app>
     <v-container fluid fill-height class="grey lighten-3">
@@ -14,6 +15,7 @@
   </v-app>
 </template>
 
+<!-- script for returning the appsection container -->
 <script>
 import AppSection from "../components/AppSection.vue";
 export default {

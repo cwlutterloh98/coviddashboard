@@ -1,3 +1,4 @@
+<!-- single cases stats card-->
 <template>
   <v-card class="pa-2 elevation-4" :color="color">
     <v-row>
@@ -14,6 +15,7 @@
   </v-card>
 </template>
 
+<!-- required properties -->
 <script>
 export default {
   props: {

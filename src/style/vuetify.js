@@ -2,6 +2,7 @@ import Vue from "vue";
 import Vuetify from "vuetify";
 import "vuetify/dist/vuetify.min.css";
 
+// viewtify is the theme options
 const opts = {
   theme: {
     themes: {

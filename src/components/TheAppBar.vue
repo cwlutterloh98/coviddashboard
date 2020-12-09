@@ -1,3 +1,4 @@
+<!-- app bar that runs if there is an issue-->
 <template>
   <v-app-bar app color="primary">
     <app-section>
@@ -12,6 +13,8 @@
     </app-section>   
   </v-app-bar>
 </template>
+
+<!-- setup the app section -->
 <script>
 import AppSection from "../components/AppSection.vue";
 export default {

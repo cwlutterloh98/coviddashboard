@@ -1,6 +1,7 @@
 <script>
 import { Line } from "vue-chartjs";
 
+// the properties a line charts on the charts page
 export default {
   extends: Line,
   props: {
@@ -15,8 +16,12 @@ export default {
     },
     chartColors: {
       type: Object
+    },
+    yAxisID: {
+      type: String
     }
   },
+  // vue hook 
   mounted() {
     const dates = this.chartData.map(d => d.date);
     const totals = this.chartData.map(d => d.total);

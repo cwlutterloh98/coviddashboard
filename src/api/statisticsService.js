@@ -1,6 +1,7 @@
 import apiConsumer from "./apiService";
 import store from "../store";
 
+// getSummary is the four cards that display case informatin
 export default {
   async getSummary() {
     try {
@@ -20,25 +21,7 @@ export default {
     }
   },
 
-  /*
-  async getAllCountriesData(yesterday = false) {
-    try {
-      const res = await apiConsumer({
-        url: `v2/countries?sort=cases&yesterday=${yesterday}`,
-        method: "GET"
-      });
-      return res.data;
-    } catch (error) {
-      if (error.response) {
-        store.commit("snackbar/show", {
-          message: `${error.response.data}`,
-          type: "error"
-        });
-      }
-      return Promise.reject(error);
-    }
-  },
-  */
+  // gets data for the counties statistics data chart
   async getUnitedStatesData() {
     try {
       const res = await apiConsumer({

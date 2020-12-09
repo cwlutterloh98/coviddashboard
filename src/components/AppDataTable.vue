@@ -1,6 +1,7 @@
 <template>
   <div>
     <div class="title py-3">{{ title }}</div>
+    <p>(data is from John Hopkins university updated every 10 minutes)</p>
     <!-- display the data table -->
     <v-data-table
       :headers="headers"
@@ -44,6 +45,25 @@
 </template>
 
 <script>
+// cookie function
+function getCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+}
+
+var searchValue2;
+var cookie = getCookie("search");
+if (cookie != "") {
+  searchValue2 = cookie;
+} else {
+  searchValue2 = "";
+}
 export default {
   // properties for the data table to work
   props: {
@@ -66,7 +86,7 @@ export default {
   },
   data: () => {
     return {
-      search: ""
+      search: searchValue2 // return value                             
     };
   },
   // the search function omits from the results

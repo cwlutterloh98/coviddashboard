@@ -1,3 +1,4 @@
+<!-- The template for spinners to run while loading -->
 <template>
   <v-overlay :value="loading" opacity="0.3" z-index="5" absolute>
     <div class="fingerprint-spinner">
@@ -14,6 +15,7 @@
   </v-overlay>
 </template>
 
+<!-- properties for the spinner -->
 <script>
 export default {
   props: {
@@ -25,6 +27,7 @@ export default {
 };
 </script>
 
+<!-- styles to make the spinners -->
 <style>
 .fingerprint-spinner,
 .fingerprint-spinner * {

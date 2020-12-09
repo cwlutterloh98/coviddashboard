@@ -2,6 +2,7 @@
   <v-container fluid>
     <app-section>
       <h1>Covid 19 cases in Ohio</h1>
+      <p>(data is from Worldometers, updated every 10 minutes)</p>
       <v-row>
         <v-col
           cols="12"
@@ -50,6 +51,17 @@ import AppStatCard from "../components/AppStatCard.vue";
 
 import statisticsService from "../api/statisticsService";
 
+//set cookies
+function setCookie(name,value,days) {
+    var expires = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days*24*60*60*1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+}
+
 export default {
   components: {
     AppSection,
@@ -68,6 +80,8 @@ export default {
       var allUnitedStatesData = this.allUnitedStatesData.filter(c =>
         c.province.includes("Ohio")
       );
+      //setup your cookie
+      setCookie('search',this.stateSearchValue,7);
       // if you type into the search bar for counties bring up the correct counties
       if (this.stateSearchValue === "") {
         return allUnitedStatesData;
@@ -90,7 +104,6 @@ export default {
       loadingSkeleton: true,
       loadingStates: false,
       loadingCountries: false,
-      //allCountriesData: [],
       allUnitedStatesData: [],
       searchValue: "",
       stateSearchValue: "",
@@ -131,18 +144,7 @@ export default {
         this.loadingSkeleton = false;
       });
     },
-    /*
-    getAllCountriesData() {
-      this.loadingCountries = true;
-      statisticsService
-        .getAllCountriesData()
-        .then(res => {
-          this.allCountriesData = res;
-          this.loadingCountries = false;
-        })
-        .catch(() => (this.loadingCountries = false));
-    },
-    */
+
     // get the Ohio counties statistics
     getUnitedStatesData() {
       this.loadingStates = true;
@@ -162,4 +164,6 @@ export default {
     }
   }
 };
+
+
 </script>

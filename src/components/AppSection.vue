@@ -1,3 +1,4 @@
+<!-- Wrapper for content-->
 <template>
   <v-row justify="center">
     <v-col cols="12" sm="9">
